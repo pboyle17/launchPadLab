@@ -7,8 +7,7 @@ let logo = {
     $imgElement.src = obj.logo;
     $imgElement.id = obj.name;
     $imgElement.addEventListener('click',()=>{
-      console.dir(obj);
-      modal.toggleModal();
+      modal.toggleModal(obj);
     });
     return $imgElement;
   }

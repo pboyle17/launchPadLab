@@ -67,8 +67,7 @@ let logo = {
     $imgElement.src = obj.logo;
     $imgElement.id = obj.name;
     $imgElement.addEventListener('click',()=>{
-      console.dir(obj);
-      modal.toggleModal();
+      modal.toggleModal(obj);
     });
     return $imgElement;
   }
@@ -78,11 +77,16 @@ module.exports = logo;
 
 },{"./modal":5}],5:[function(require,module,exports){
 let modal = {
-  toggleModal:function(){
+  toggleModal:function(obj){
     let $modal = document.querySelector('#modal');
     $modal.classList.toggle('hide');
     $modal.classList.toggle('show');
-
+    console.log(obj);
+    document.querySelector('#modal').innerHTML = `name: ${obj.name}
+    watchers: ${obj.watchers}
+    forks: ${obj.forks}
+    issues: ${obj.issues}
+    `;
   }
 }
 
