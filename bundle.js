@@ -19,7 +19,7 @@ Promise.all([
   });
 });
 
-},{"./components/angular":2,"./components/ember":3,"./components/logo":4,"./components/react":6,"./components/vue":7}],2:[function(require,module,exports){
+},{"./components/angular":2,"./components/ember":4,"./components/logo":5,"./components/react":7,"./components/vue":8}],2:[function(require,module,exports){
 let angular = {
   url:"https://api.github.com/repos/angular/angular.js",
   logo:'images/angularLogo.png',
@@ -39,6 +39,14 @@ let angular = {
 module.exports = angular;
 
 },{}],3:[function(require,module,exports){
+var closeButton = {
+  createButton:function(){
+    return '<img src="./images/closeButton.png"></img>'
+  }
+}
+module.exports = closeButton;
+
+},{}],4:[function(require,module,exports){
 let ember = {
   url:"https://api.github.com/repos/emberjs/ember.js",
   logo:'images/emberLogo.png',
@@ -57,7 +65,7 @@ let ember = {
 
 module.exports = ember;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 let modal = require('./modal');
 
 let logo = {
@@ -75,7 +83,11 @@ let logo = {
 
 module.exports = logo;
 
-},{"./modal":5}],5:[function(require,module,exports){
+},{"./modal":6}],6:[function(require,module,exports){
+let closeButton = require('./closeButton');
+
+let button = closeButton.createButton();
+
 let modal = {
   toggleModal:function(obj){
     let $modal = document.querySelector('#modal');
@@ -86,13 +98,13 @@ let modal = {
     watchers: ${obj.watchers}
     forks: ${obj.forks}
     issues: ${obj.issues}
-    `;
+    ${button}`;
   }
 }
 
 module.exports = modal;
 
-},{}],6:[function(require,module,exports){
+},{"./closeButton":3}],7:[function(require,module,exports){
 let react = {
   url:"https://api.github.com/repos/facebook/react",
   logo:'images/reactLogo.png',
@@ -111,7 +123,7 @@ let react = {
 
 module.exports = react;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 let vue = {
   url:"https://api.github.com/repos/vuejs/vue",
   logo:'images/vueLogo.png',

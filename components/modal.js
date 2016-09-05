@@ -1,3 +1,7 @@
+let closeButton = require('./closeButton');
+
+let button = closeButton.createButton();
+
 let modal = {
   toggleModal:function(obj){
     let $modal = document.querySelector('#modal');
@@ -8,7 +12,7 @@ let modal = {
     watchers: ${obj.watchers}
     forks: ${obj.forks}
     issues: ${obj.issues}
-    `;
+    ${button}`;
   }
 }
 
