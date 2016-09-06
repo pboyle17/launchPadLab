@@ -39,14 +39,18 @@ let angular = {
 module.exports = angular;
 
 },{}],3:[function(require,module,exports){
-var closeButton = {
+let modal = require('./modal');
+
+let closeButton = {
   createButton:function(){
-    return '<img src="./images/closeButton.png"></img>'
+    let raw = '<img src="./images/closeButton.png" id="closeButton"></img>';
+    return raw;
   }
 }
+
 module.exports = closeButton;
 
-},{}],4:[function(require,module,exports){
+},{"./modal":6}],4:[function(require,module,exports){
 let ember = {
   url:"https://api.github.com/repos/emberjs/ember.js",
   logo:'images/emberLogo.png',
@@ -99,6 +103,11 @@ let modal = {
     forks: ${obj.forks}
     issues: ${obj.issues}
     ${button}`;
+    document.querySelector('#closeButton').addEventListener('click',()=>{
+      $modal.classList.toggle('hide');
+      $modal.classList.toggle('show');
+    });
+
   }
 }
 

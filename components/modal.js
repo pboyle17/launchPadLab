@@ -13,6 +13,11 @@ let modal = {
     forks: ${obj.forks}
     issues: ${obj.issues}
     ${button}`;
+    document.querySelector('#closeButton').addEventListener('click',()=>{
+      $modal.classList.toggle('hide');
+      $modal.classList.toggle('show');
+    });
+
   }
 }
 
