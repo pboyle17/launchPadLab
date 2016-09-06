@@ -1,25 +1,32 @@
 #container {
-  margin:0 auto;
+  margin:25px auto;
   background-color: rgb(205, 201, 210);
   width:80%;
   z-index: 0;
   position:relative;
+  border-radius:10px;
+  box-shadow: 10px 5px 5px gray;
+}
+
+#dashContainer {
+  margin:0 auto;
+}
+
+#dashInner{
+  width:90%;
+  margin:0 auto;
 }
 
 #imageContainer {
   width:80%;
   margin:0 auto;
-  z-index:10;
-  position:relative;
+  text-align:center;
 }
 
 #modal {
-  z-index:1000;
-  height:600px;
-  width:600px;
   background-color:rgba(185, 188, 245, 0.35);
   border-radius:10px;
-  position:relative
+  text-align:center;
 }
 
 .hide {
@@ -31,6 +38,9 @@
 }
 
 img {
-  z-index:500;
-  position:relative
+  margin:0 auto;
+  display:inline-block;
+}
+img:hover {
+  background-color:rgba(166, 167, 172, 0.38);
 }
