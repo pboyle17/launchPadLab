@@ -5,7 +5,7 @@ let vue = require('./components/vue');
 let react = require('./components/react');
 let logo = require('./components/logo');
 
-let frameWorks = [ember,angular,vue,react];
+let frameWorks = [angular,ember,react,vue];
 
 Promise.all([
   ember.getData(),
@@ -30,6 +30,7 @@ let angular = {
         this.forks = x.forks;
         this.name = x.name;
         this.issues = x.open_issues;
+        this.description = x.description;
         resolve(x);
       });
     });
@@ -43,7 +44,7 @@ let modal = require('./modal');
 
 let closeButton = {
   createButton:function(){
-    let raw = '<img src="./images/closeButton.png" id="closeButton"></img>';
+    let raw = '<img src="./images/closeButton.png" id="closeButton" height="25px" width="25px"></img>';
     return raw;
   }
 }
@@ -61,6 +62,7 @@ let ember = {
         this.forks = x.forks;
         this.name = x.name;
         this.issues = x.open_issues;
+        this.description = x.description;
         resolve(x);
       });
     });
@@ -101,6 +103,7 @@ let modal = {
     $modal.classList.toggle('show');
     console.log(obj);
     document.querySelector('#modal').innerHTML = `name: ${obj.name}
+    description: ${obj.description}
     watchers: ${obj.watchers}
     forks: ${obj.forks}
     issues: ${obj.issues}
@@ -126,6 +129,7 @@ let react = {
         this.forks = x.forks;
         this.name = x.name;
         this.issues = x.open_issues;
+        this.description = x.description;
         resolve(x);
       });
     });
@@ -145,6 +149,7 @@ let vue = {
         this.forks = x.forks;
         this.name = x.name;
         this.issues = x.open_issues;
+        this.description = x.description;
         resolve(x);
       });
     });

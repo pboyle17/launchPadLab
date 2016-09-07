@@ -8,6 +8,7 @@ let react = {
         this.forks = x.forks;
         this.name = x.name;
         this.issues = x.open_issues;
+        this.description = x.description;
         resolve(x);
       });
     });

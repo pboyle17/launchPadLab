@@ -4,7 +4,7 @@ let vue = require('./components/vue');
 let react = require('./components/react');
 let logo = require('./components/logo');
 
-let frameWorks = [ember,angular,vue,react];
+let frameWorks = [angular,ember,react,vue];
 
 Promise.all([
   ember.getData(),

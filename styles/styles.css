@@ -44,3 +44,7 @@ img {
 img:hover {
   background-color:rgba(166, 167, 172, 0.38);
 }
+
+body {
+  height:1200px;
+}

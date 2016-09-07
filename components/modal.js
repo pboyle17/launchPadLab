@@ -9,6 +9,7 @@ let modal = {
     $modal.classList.toggle('show');
     console.log(obj);
     document.querySelector('#modal').innerHTML = `name: ${obj.name}
+    description: ${obj.description}
     watchers: ${obj.watchers}
     forks: ${obj.forks}
     issues: ${obj.issues}
