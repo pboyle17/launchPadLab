@@ -1,6 +1,7 @@
 let ember = {
   url:"https://api.github.com/repos/emberjs/ember.js",
   logo:'images/emberLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{

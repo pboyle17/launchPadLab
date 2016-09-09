@@ -1,6 +1,7 @@
 let angular = {
   url:"https://api.github.com/repos/angular/angular.js",
   logo:'images/angularLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{

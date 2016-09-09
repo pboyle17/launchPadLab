@@ -7,6 +7,7 @@ let compareButton = require('./components/compareButton');
 let orderByWatchers = require('./components/orderByWatchers');
 let orderByForks = require('./components/orderByForks');
 let orderByIssues = require('./components/orderByIssues');
+let recommendation = require('./components/recommendation');
 
 let frameWorks = [angular,ember,react,vue];
 
@@ -48,7 +49,7 @@ Promise.all([
   });
   document.querySelector('#compareIssuesButton').addEventListener('click',()=>{
 
-    let ordered = orderByIssues.sort(frameWorks).reverse();
+    let ordered = orderByIssues.sort(frameWorks);
     console.log(ordered);
     $modal = document.querySelector('#modal');
     $modal.innerHTML = '<h3>Issues</h3>';
@@ -59,5 +60,14 @@ Promise.all([
     });
       $modal.classList.toggle('hide');
       $modal.classList.toggle('show');
+  });
+
+  document.querySelector('#winner').addEventListener('click',()=>{
+    $modal = document.querySelector('#modal');
+    $modal.innerHTML = '<h3>Recommendation</h3><p>Based on community support, development activity and stability the recommendation is:</p><div><img src="'+recommendation.recommend(frameWorks).logo+'"/>';
+    $modal.classList.toggle('hide');
+    $modal.classList.toggle('show');
+    recommendation.recommend(frameWorks);
+
   });
 });

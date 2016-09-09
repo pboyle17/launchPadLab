@@ -27,6 +27,7 @@
 
 .compareWrapper {
   text-align:center;
+  margin:25px;
 }
 
 #dashContainer {
@@ -49,7 +50,10 @@
   border-radius:10px;
   text-align:center;
   box-shadow: 10px 5px 5px gray;
+  font-size:1.5em;
 }
+
+
 
 .hide {
   display:none;

@@ -8,6 +8,7 @@ let compareButton = require('./components/compareButton');
 let orderByWatchers = require('./components/orderByWatchers');
 let orderByForks = require('./components/orderByForks');
 let orderByIssues = require('./components/orderByIssues');
+let recommendation = require('./components/recommendation');
 
 let frameWorks = [angular,ember,react,vue];
 
@@ -49,7 +50,7 @@ Promise.all([
   });
   document.querySelector('#compareIssuesButton').addEventListener('click',()=>{
 
-    let ordered = orderByIssues.sort(frameWorks).reverse();
+    let ordered = orderByIssues.sort(frameWorks);
     console.log(ordered);
     $modal = document.querySelector('#modal');
     $modal.innerHTML = '<h3>Issues</h3>';
@@ -61,12 +62,22 @@ Promise.all([
       $modal.classList.toggle('hide');
       $modal.classList.toggle('show');
   });
+
+  document.querySelector('#winner').addEventListener('click',()=>{
+    $modal = document.querySelector('#modal');
+    $modal.innerHTML = '<h3>Recommendation</h3><p>Based on community support, development activity and stability the recommendation is:</p><div><img src="'+recommendation.recommend(frameWorks).logo+'"/>';
+    $modal.classList.toggle('hide');
+    $modal.classList.toggle('show');
+    recommendation.recommend(frameWorks);
+
+  });
 });
 
-},{"./components/angular":2,"./components/compareButton":4,"./components/ember":5,"./components/logo":6,"./components/orderByForks":8,"./components/orderByIssues":9,"./components/orderByWatchers":10,"./components/react":11,"./components/vue":12}],2:[function(require,module,exports){
+},{"./components/angular":2,"./components/compareButton":4,"./components/ember":5,"./components/logo":6,"./components/orderByForks":8,"./components/orderByIssues":9,"./components/orderByWatchers":10,"./components/react":11,"./components/recommendation":12,"./components/vue":13}],2:[function(require,module,exports){
 let angular = {
   url:"https://api.github.com/repos/angular/angular.js",
   logo:'images/angularLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{
@@ -108,6 +119,7 @@ module.exports = compareButton;
 let ember = {
   url:"https://api.github.com/repos/emberjs/ember.js",
   logo:'images/emberLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{
@@ -184,7 +196,7 @@ module.exports = orderByForks;
 },{}],9:[function(require,module,exports){
 let orderByIssues = {
   sort:function(obj){
-    return obj.sort((a,b)=>b.issues-a.issues);
+    return obj.sort((a,b)=>b.issues-a.issues).reverse();
   }
 }
 
@@ -203,6 +215,7 @@ module.exports = orderByWatchers;
 let react = {
   url:"https://api.github.com/repos/facebook/react",
   logo:'images/reactLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{
@@ -220,9 +233,39 @@ let react = {
 module.exports = react;
 
 },{}],12:[function(require,module,exports){
+let orderByForks = require('./orderByForks');
+let orderByWatchers = require('./orderByWatchers');
+let orderByIssues = require('./orderByIssues');
+
+
+let recommendation = {
+  recommend:function(frameWorksArr){
+    frameWorksArr.forEach(frameWork=>frameWork.points=0);
+    let forks = orderByForks.sort(frameWorksArr);
+    let issues = orderByIssues.sort(frameWorksArr);
+    let watchers = orderByWatchers.sort(frameWorksArr);
+
+    for(let y = 0 ; y < forks.length ; y++){
+      forks[y].points += y;
+    }
+    for(let x = 0 ; x < issues.length ; x++){
+      issues[x].points += x;
+    }
+    for(let z = 0 ; z < watchers.length ; z++){
+      watchers[z].points += z;
+    }
+
+    return frameWorksArr.sort((a,b)=>a.points-b.points)[0];
+  }
+}
+
+module.exports = recommendation
+
+},{"./orderByForks":8,"./orderByIssues":9,"./orderByWatchers":10}],13:[function(require,module,exports){
 let vue = {
   url:"https://api.github.com/repos/vuejs/vue",
   logo:'images/vueLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{

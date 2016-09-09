@@ -1,6 +1,7 @@
 let react = {
   url:"https://api.github.com/repos/facebook/react",
   logo:'images/reactLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{

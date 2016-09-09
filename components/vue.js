@@ -1,6 +1,7 @@
 let vue = {
   url:"https://api.github.com/repos/vuejs/vue",
   logo:'images/vueLogo.png',
+  points:0,
   getData:function(){
     return new Promise((resolve)=>{
       fetch(this.url).then(x=>x.json()).then(x=>{
