@@ -10,15 +10,23 @@
 }
 
 .button {
-  height:100px;
+  height:50px;
   width:100px;
   background-color:rgb(205, 201, 210);
   margin:0 auto;
   text-align:center;
   border-radius:10px;
-  top:50%;
   box-shadow:10px 5px 5px gray;
-  position:absolute;
+  display:inline-block;
+}
+
+.button:hover {
+  cursor:pointer;
+  background-color:rgb(141, 206, 238);
+}
+
+.compareWrapper {
+  text-align:center;
 }
 
 #dashContainer {
@@ -43,14 +51,6 @@
   box-shadow: 10px 5px 5px gray;
 }
 
-#popup{
-  width:1000px;
-  height:1000px;
-  background-color:rgba(181, 176, 198, 0.40);
-  position:relative;
-  z-index:10000;
-}
-
 .hide {
   display:none;
 }
@@ -66,8 +66,4 @@ img {
 img:hover {
   background-color:rgba(166, 167, 172, 0.38);
   cursor:pointer;
-}
-
-button {
-  position:absolute;
 }

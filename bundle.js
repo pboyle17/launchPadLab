@@ -21,22 +21,46 @@ Promise.all([
     let img = logo.createLogo(x);
     document.querySelector('#imageContainer').appendChild(img);
   });
-    document.querySelector('#compareButton').addEventListener('click', ()=>{
-      console.log('ordered by Watchers');
-      orderByWatchers.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.watchers} watches`));
-
-      console.log('ordered by forks');
-      orderByForks.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.forks} forks`));
-
-      console.log('ordered by amount of issues');
-      orderByIssues.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.issues} issues`));
+  document.querySelector('#compareWatchersButton').addEventListener('click',()=>{
+    let ordered = orderByWatchers.sort(frameWorks)
+    console.log(ordered);
+    $modal = document.querySelector('#modal');
+    $modal.innerHTML = '<h3>Watchers</h3>';
+    ordered.forEach(frameWork=>{
+      let child = document.createElement('div');
+      child.innerHTML = `${frameWork.name} : ${frameWork.watchers}`
+      $modal.appendChild(child);
     });
-
-    document.querySelector('button').addEventListener('click',()=>{
-      document.querySelector('#popup').classList.toggle('hide');
-      document.querySelector('#popup').classList.toggle('show');
+      $modal.classList.toggle('hide');
+      $modal.classList.toggle('show');
+  });
+  document.querySelector('#compareForksButton').addEventListener('click',()=>{
+    let ordered = orderByForks.sort(frameWorks)
+    console.log(ordered);
+    $modal = document.querySelector('#modal');
+    $modal.innerHTML = '<h3>Forks</h3>';
+    ordered.forEach(frameWork=>{
+      let child = document.createElement('div');
+      child.innerHTML = `${frameWork.name} : ${frameWork.forks}`
+      $modal.appendChild(child);
     });
+      $modal.classList.toggle('hide');
+      $modal.classList.toggle('show');
+  });
+  document.querySelector('#compareIssuesButton').addEventListener('click',()=>{
 
+    let ordered = orderByIssues.sort(frameWorks).reverse();
+    console.log(ordered);
+    $modal = document.querySelector('#modal');
+    $modal.innerHTML = '<h3>Issues</h3>';
+    ordered.forEach(frameWork=>{
+      let child = document.createElement('div');
+      child.innerHTML = `${frameWork.name} : ${frameWork.issues}`
+      $modal.appendChild(child);
+    });
+      $modal.classList.toggle('hide');
+      $modal.classList.toggle('show');
+  });
 });
 
 },{"./components/angular":2,"./components/compareButton":4,"./components/ember":5,"./components/logo":6,"./components/orderByForks":8,"./components/orderByIssues":9,"./components/orderByWatchers":10,"./components/react":11,"./components/vue":12}],2:[function(require,module,exports){
