@@ -32,6 +32,10 @@ Promise.all([
       orderByIssues.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.issues} issues`));
     });
 
+    document.querySelector('button').addEventListener('click',()=>{
+      document.querySelector('#popup').classList.toggle('hide');
+      document.querySelector('#popup').classList.toggle('show');
+    });
 
 });
 
