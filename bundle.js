@@ -4,6 +4,10 @@ let ember = require('./components/ember');
 let vue = require('./components/vue');
 let react = require('./components/react');
 let logo = require('./components/logo');
+let compareButton = require('./components/compareButton');
+let orderByWatchers = require('./components/orderByWatchers');
+let orderByForks = require('./components/orderByForks');
+let orderByIssues = require('./components/orderByIssues');
 
 let frameWorks = [angular,ember,react,vue];
 
@@ -17,9 +21,21 @@ Promise.all([
     let img = logo.createLogo(x);
     document.querySelector('#imageContainer').appendChild(img);
   });
+    document.querySelector('#compareButton').addEventListener('click', ()=>{
+      console.log('ordered by Watchers');
+      orderByWatchers.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.watchers} watches`));
+
+      console.log('ordered by forks');
+      orderByForks.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.forks} forks`));
+
+      console.log('ordered by amount of issues');
+      orderByIssues.sort(frameWorks).forEach(frameWork=>console.log(`${frameWork.name} : ${frameWork.issues} issues`));
+    });
+
+
 });
 
-},{"./components/angular":2,"./components/ember":4,"./components/logo":5,"./components/react":7,"./components/vue":8}],2:[function(require,module,exports){
+},{"./components/angular":2,"./components/compareButton":4,"./components/ember":5,"./components/logo":6,"./components/orderByForks":8,"./components/orderByIssues":9,"./components/orderByWatchers":10,"./components/react":11,"./components/vue":12}],2:[function(require,module,exports){
 let angular = {
   url:"https://api.github.com/repos/angular/angular.js",
   logo:'images/angularLogo.png',
@@ -51,7 +67,16 @@ let closeButton = {
 
 module.exports = closeButton;
 
-},{"./modal":6}],4:[function(require,module,exports){
+},{"./modal":7}],4:[function(require,module,exports){
+let compareButton = {
+  hello:function(obj){
+    console.log('hello world',obj);
+  }
+};
+
+module.exports = compareButton;
+
+},{}],5:[function(require,module,exports){
 let ember = {
   url:"https://api.github.com/repos/emberjs/ember.js",
   logo:'images/emberLogo.png',
@@ -71,7 +96,7 @@ let ember = {
 
 module.exports = ember;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 let modal = require('./modal');
 
 let logo = {
@@ -91,8 +116,9 @@ let logo = {
 
 module.exports = logo;
 
-},{"./modal":6}],6:[function(require,module,exports){
+},{"./modal":7}],7:[function(require,module,exports){
 let closeButton = require('./closeButton');
+
 
 let button = closeButton.createButton();
 
@@ -118,7 +144,34 @@ let modal = {
 
 module.exports = modal;
 
-},{"./closeButton":3}],7:[function(require,module,exports){
+},{"./closeButton":3}],8:[function(require,module,exports){
+let orderByForks = {
+  sort:function(obj){
+    return obj.sort((a,b)=>b.forks - a.forks);
+  }
+}
+
+module.exports = orderByForks;
+
+},{}],9:[function(require,module,exports){
+let orderByIssues = {
+  sort:function(obj){
+    return obj.sort((a,b)=>b.issues-a.issues);
+  }
+}
+
+module.exports = orderByIssues;
+
+},{}],10:[function(require,module,exports){
+let orderByWatchers = {
+  sort:function(obj){
+    return obj.sort((a,b)=>b.watchers-a.watchers);
+  }
+}
+
+module.exports = orderByWatchers;
+
+},{}],11:[function(require,module,exports){
 let react = {
   url:"https://api.github.com/repos/facebook/react",
   logo:'images/reactLogo.png',
@@ -138,7 +191,7 @@ let react = {
 
 module.exports = react;
 
-},{}],8:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 let vue = {
   url:"https://api.github.com/repos/vuejs/vue",
   logo:'images/vueLogo.png',

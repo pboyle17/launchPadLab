@@ -1,5 +1,6 @@
 let closeButton = require('./closeButton');
 
+
 let button = closeButton.createButton();
 
 let modal = {
